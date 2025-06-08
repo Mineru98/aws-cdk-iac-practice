@@ -1,4 +1,4 @@
-# 모듈 1: 로컬 개발 환경 설정 및 정적 웹사이트 호스팅
+# 모듈 1: 로컬 개발 환경 설정 및 정적 웹사이트 호스팅(18분 + 7분)
 
 ![Architecture](../images/module-1/architecture-module-1.png)
 
@@ -46,6 +46,7 @@ AWS CDK의 가장 큰 이점 중 하나는 재사용성의 원칙입니다. 애�
 AWS CDK 애플리케이션을 포함할 새로운 폴더를 생성합니다:
 
 ```sh
+# 프로젝트 루트 이동 하기
 mkdir cdk && cd cdk
 ```
 
@@ -252,6 +253,8 @@ cdk synth TodoList-Website > synth.yaml
 aws cloudformation describe-stacks --stack-name CDKToolkit
 ```
 
+> An error occurred (ValidationError) when calling the DescribeStacks operation: Stack with id CDKToolkit does not exist
+
 TODO: 존재하지 않을 때 어떻게 뜨는지 확인해보기
 만약 존재한다면 아래 bootstrap을 하지 않아도 됩니다. (재실행해도 문제되지는 않음)
 
@@ -273,6 +276,9 @@ cdk deploy TodoList-Website
 ```
 
 `Do you wish to deploy these changes (y/n)?`와 같은 메시지가 표시되며 `y`를 입력합니다.
+
+![image-20250608145348835](/Users/imgeunseog/Library/Application Support/typora-user-images/image-20250608145348835.png)
+![image-20250608145356323](/Users/imgeunseog/Library/Application Support/typora-user-images/image-20250608145356323.png)
 
 그러면 AWS CDK가 다음 작업들을 수행할 것 입니다:
 

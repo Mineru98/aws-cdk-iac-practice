@@ -1,6 +1,4 @@
-# 모듈 2: AWS Fargate로 서비스 생성
-
-![Architecture](../images/module-2/architecture-module-2.png)
+# 모듈 2: AWS Fargate로 서비스 생성(28분 + 5분 + 37분)![Architecture](../images/module-2/architecture-module-2.png)
 
 **완료에 필요한 시간:** 60분
 
@@ -498,6 +496,8 @@ cdk deploy TodoList-ECS --require-approval never
 
 ```sh
 curl http://<replace-with-your-nlb-address>/todos
+
+curl http://TodoLi-Servi-Y2rU2lnkdoly-f89db94ba199828e.elb.ap-northeast-2.amazonaws.com/todos
 ```
 
 이전에 도커 컨테이너를 로컬에서 테스트할 때 본 JSON 응답과 동일한 응답을 볼 수 있습니다.
@@ -598,7 +598,7 @@ git init
 git add .
 git commit -m "Initial commit: TodoList backend service"
 git branch -M main
-git remote add origin https://github.com/YOUR_GITHUB_USERNAME/todolist-backend.git
+git remote add origin https://github.com/Mineru98/aws-cdk-iac-be-practive.git
 git push -u origin main
 ```
 
