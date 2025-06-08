@@ -1,6 +1,8 @@
 # AWS CDK를 이용한 aws 애플리케이션 구축 실습
 
 이 프로젝트는 AWS CDK를 사용하여 현대적인 웹 애플리케이션을 구축하는 실습 프로젝트입니다. AWS의 다양한 서비스를 활용하여 마이크로서비스 아키텍처를 구현하고, 인프라를 코드로 관리하는 방법을 학습합니다.
+모든 내용은 최대한 복사 붙여넣기를 할 수 있도록 작성되었습니다.
+혹시나 오류가 발생하면 저에게 문의주시면 감사드리겠습니다.
 
 ## 개발 환경 준비
 
@@ -9,9 +11,24 @@
 
 - [Python 3.13](https://www.python.org/downloads/)
 - [Node.js 20.x](https://nodejs.org/ko)
+- [Docker Desktop](https://www.docker.com/)
+  
 - [AWS CLI v2](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+
+> (1분)
+
+```bash
+curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+sudo installer -pkg AWSCLIV2.pkg -target /
+```
+
 - [AWS CDK](https://docs.aws.amazon.com/ko_kr/cdk/v2/guide/getting-started.html)
-- [Docker & Docker Desktop](https://www.docker.com/)
+
+> (30초)
+
+```bash
+npm install -g aws-cdk
+```
 
 ```bash
 # AWS CLI 버전 확인
@@ -39,7 +56,7 @@ cdk --version
 
 ```
 .
-├── source/                    # AWS 워크샵 예제 소스 코드
+├── source/                   # AWS 워크샵 예제 소스 코드
 │   ├── module-1/             # 모듈 1: 기본 인프라 설정
 │   ├── module-2/             # 모듈 2: Flask 애플리케이션 및 Fargate 배포
 │   └── ...
@@ -57,3 +74,6 @@ cdk --version
 ## 원본 출처
 
 - [AWS sample](https://github.com/aws-samples/aws-modern-application-workshop)
+
+
+[모듈 0 진행](source/module-0/README.md)

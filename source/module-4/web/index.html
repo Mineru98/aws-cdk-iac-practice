@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <!--
+    사용자 등록 및 로그인이 활성화된 새로운 버전의 TodoList 웹사이트입니다.
+    로그인한 사용자는 할일의 완료 상태를 토글하고 할일을 삭제할 수 있습니다.
+  -->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>할 일 목록 - 사용자 인증 기능</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.135.0.min.js"></script>
+    <script src="js/aws-cognito-sdk.min.js"></script>
+    <script src="js/amazon-cognito-identity.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <div class="card-header">
+          <h1 class="card-title">할 일 목록</h1>
+          <p class="card-subtitle">완료 및 삭제 기능에는 로그인이 필요합니다</p>
+        </div>
+
+        <!-- 로그인 상태 표시 -->
+        <div class="auth-section">
+          <div id="logged-out-section" class="auth-info">
+            <span>로그인하지 않음</span>
+            <button id="login-button" class="button">로그인</button>
+            <a href="register.html" class="button">회원가입</a>
+          </div>
+          <div id="logged-in-section" class="auth-info hidden">
+            <span>로그인됨</span>
+            <button id="logout-button" class="button">로그아웃</button>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <!-- 할 일 추가 폼 -->
+          <form id="todo-form" class="todo-form">
+            <input type="text" id="todo-input" placeholder="할 일을 입력하세요" class="todo-input">
+            <button type="submit" id="add-button" class="button">추가</button>
+          </form>
+
+          <!-- 로딩 표시 -->
+          <p id="loading-message" class="text-center">데이터를 불러오는 중...</p>
+
+          <!-- 할 일 목록 -->
+          <div id="todo-list" class="todo-list"></div>
+
+          <!-- 할 일 없음 메시지 -->
+          <p id="empty-message" class="text-center text-muted hidden">할 일이 없습니다</p>
+
+          <!-- 오류 메시지 -->
+          <p id="error-message" class="text-center text-error hidden">데이터를 불러오는 중 오류가 발생했습니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 로그인 모달 -->
+    <div id="login-modal" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>로그인</h3>
+          <button id="close-modal" class="close-button">&times;</button>
+        </div>
+        <form id="login-form">
+          <div class="form-group">
+            <input type="email" id="email" placeholder="이메일" required />
+          </div>
+          <div class="form-group">
+            <input type="password" id="password" placeholder="비밀번호" required />
+          </div>
+          <button type="submit" class="button">로그인</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- 할 일 항목 템플릿 -->
+    <template id="todo-item-template">
+      <div class="todo-item">
+        <div class="todo-item-content">
+          <input type="checkbox" class="todo-checkbox">
+          <span class="todo-text"></span>
+        </div>
+        <div class="todo-item-actions">
+          <button class="button-icon delete-button" title="삭제">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 6h18"></path>
+              <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+              <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </template>
+
+    <script>
+      // API 엔드포인트 및 Cognito 설정
+      var todosApiEndpoint = 'REPLACE_ME'; // 예시: 'https://abcd12345.execute-api.ap-northeast-2.amazonaws.com/prod'
+      var cognitoUserPoolId = 'REPLACE_ME';  // 예시: 'ap-northeast-2_abcd12345'
+      var cognitoUserPoolClientId = 'REPLACE_ME'; // 예시: 'abcd12345abcd12345abcd12345'
+      var awsRegion = 'REPLACE_ME'; // 예시: 'ap-northeast-2'
+    </script>
+    <script src="app.js"></script>
+  </body>
+</html>

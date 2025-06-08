@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <!--
+    TodoList를 사용하려는 사용자가 이메일 주소와 비밀번호로 
+    회원가입할 수 있는 등록 페이지입니다. 아래 JavaScript는 
+    서비스와 통합하기 위해 Amazon Cognito JavaScript SDK를 사용합니다.
+  -->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>할 일 목록 - 회원가입</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="js/aws-cognito-sdk.min.js"></script>
+    <script src="js/amazon-cognito-identity.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <div class="card-header">
+          <h1 class="card-title">회원가입</h1>
+          <p class="card-subtitle">새 계정을 만드세요</p>
+        </div>
+        <div class="card-content">
+          <form id="register-form">
+            <div class="form-group">
+              <input type="email" id="email" placeholder="이메일" required>
+            </div>
+            <div class="form-group">
+              <input type="password" id="password" placeholder="비밀번호" required>
+            </div>
+            <div class="form-group">
+              <input type="password" id="confirm-password" placeholder="비밀번호 확인" required>
+            </div>
+            <button type="submit" class="button">회원가입</button>
+          </form>
+          <div class="text-center" style="margin-top: 1rem;">
+            <a href="index.html" class="button">메인 페이지로 돌아가기</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var cognitoUserPoolId = 'REPLACE_ME';  // 예시: 'ap-northeast-2_abcd12345'
+      var cognitoUserPoolClientId = 'REPLACE_ME'; // 예시: 'abcd12345abcd12345abcd12345'
+
+      document.getElementById('register-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+
+        if (password !== confirmPassword) {
+          alert('비밀번호가 일치하지 않습니다.');
+          return;
+        }
+
+        const poolData = {
+          UserPoolId: cognitoUserPoolId,
+          ClientId: cognitoUserPoolClientId
+        };
+        const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+
+        const attributeList = [];
+        const dataEmail = {
+          Name: 'email',
+          Value: email
+        };
+        const attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail);
+        attributeList.push(attributeEmail);
+
+        userPool.signUp(email, password, attributeList, null, function(err, result) {
+          if (err) {
+            alert('회원가입 오류: ' + err.message);
+            return;
+          }
+          console.log(result.user);
+          localStorage.setItem('email', email);
+          alert('회원가입이 완료되었습니다! 이메일 인증을 진행해주세요.');
+          window.location.href = 'confirm.html';
+        });
+      });
+    </script>
+  </body>
+</html>

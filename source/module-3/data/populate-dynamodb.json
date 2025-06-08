@@ -1,0 +1,124 @@
+{
+   "TodoTable" : [
+      {
+         "PutRequest": {
+            "Item": {
+               "id" : {
+                  "N": "1"
+               },
+               "text" : {
+                  "S": "프로젝트 계획 수립하기"
+               },
+               "completed" : {
+                  "BOOL": false
+               }
+            }
+         }
+      },
+      {
+         "PutRequest": {
+            "Item": {
+               "id" : {
+                  "N": "2"
+               },
+               "text" : {
+                  "S": "디자인 시안 검토하기"
+               },
+               "completed" : {
+                  "BOOL": true
+               }
+            }
+         }
+      },
+      {
+         "PutRequest": {
+            "Item": {
+               "id" : {
+                  "N": "3"
+               },
+               "text" : {
+                  "S": "API 문서 작성하기"
+               },
+               "completed" : {
+                  "BOOL": false
+               }
+            }
+         }
+      },
+      {
+         "PutRequest": {
+            "Item": {
+               "id" : {
+                  "N": "4"
+               },
+               "text" : {
+                  "S": "데이터베이스 설계하기"
+               },
+               "completed" : {
+                  "BOOL": false
+               }
+            }
+         }
+      },
+      {
+         "PutRequest": {
+            "Item": {
+               "id" : {
+                  "N": "5"
+               },
+               "text" : {
+                  "S": "프론트엔드 구현하기"
+               },
+               "completed" : {
+                  "BOOL": false
+               }
+            }
+         }
+      },
+      {
+         "PutRequest": {
+            "Item": {
+               "id" : {
+                  "N": "6"
+               },
+               "text" : {
+                  "S": "백엔드 API 개발하기"
+               },
+               "completed" : {
+                  "BOOL": true
+               }
+            }
+         }
+      },
+      {
+         "PutRequest": {
+            "Item": {
+               "id" : {
+                  "N": "7"
+               },
+               "text" : {
+                  "S": "테스트 코드 작성하기"
+               },
+               "completed" : {
+                  "BOOL": false
+               }
+            }
+         }
+      },
+      {
+         "PutRequest": {
+            "Item": {
+               "id" : {
+                  "N": "8"
+               },
+               "text" : {
+                  "S": "배포 환경 구성하기"
+               },
+               "completed" : {
+                  "BOOL": false
+               }
+            }
+         }
+      }
+   ]
+}
